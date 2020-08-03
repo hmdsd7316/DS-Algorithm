@@ -2,6 +2,10 @@ public class LinkedList{
 	private Node head;
 	private Node tail;
 	
+	public Node getHead(){
+		return head;
+	}
+	
 	public void addFirst(String data){
 		Node node = new Node(data);
 		if(head == null){
@@ -72,14 +76,16 @@ public class LinkedList{
 			throw new Exception("NoSuchElementException");
 		}else{
 			Node current = head;
+			System.out.println();
 			while(true){
-				System.out.println(current.data);
+				System.out.print(current.data + " ");
 				if(current.next == null){
 					break;
 				}
 				
 				current = current.next;
 			}
+			System.out.println();
 		}
 	}
 	
@@ -179,7 +185,7 @@ public class LinkedList{
 	// Parul -> prem -> Ahmad -> Vineet
 	// Parul -> Anika -> prem -> Ahmad -> Vineet
 	public static void main(String...a) throws Exception{
-		LinkedList linkList = new LinkedList();
+		/*LinkedList linkList = new LinkedList();
 		linkList.addFirst("2");
 		linkList.addFirst("9");
 		linkList.addFirst("7");
@@ -187,12 +193,12 @@ public class LinkedList{
 		linkList.addFirst("4");
 		linkList.display();
 		System.out.println("====================");
-		
+		*/
 		//linkList.deleteByValue("Prem");
 		//linkList.deleteByIndex(2);
 		
-		linkList.sort();
-		linkList.display();
+		//linkList.sort();
+		//linkList.display();
 		
 		//System.out.println("Delete Last: " + linkList.deleteLast());
 		//System.out.println("Last: " + linkList.getLast());
@@ -203,11 +209,30 @@ public class LinkedList{
 		//linkList.addLast("Vineet");
 		//System.out.println("New Last: " + linkList.getLast());
 		
-		///linkList.addElement(1, "Anika");
+		//linkList.addElement(1, "Anika");
 		//System.out.println("");
 		//linkList.display();
 		
 		//linkList.deleteByIndex(22);
+		
+		
+		// Remove Duplicates From Sorted Linked List
+		LinkedList linkList = new LinkedList();
+		linkList.addFirst("1");
+		linkList.addLast("2");
+		linkList.addLast("2");
+		linkList.addLast("3");
+		linkList.addLast("4");
+		linkList.addLast("5");
+		linkList.addLast("5");
+		linkList.addLast("5");
+		linkList.addLast("6");
+		linkList.addLast("7");
+		linkList.addLast("8");
+		linkList.display();
+		System.out.println("----------");
+		linkList.removeDuplicate();
+		linkList.display();
 	}
 	
 	public void sort() throws Exception{
@@ -239,6 +264,19 @@ public class LinkedList{
 		}
 	}
 	
+	/* Remove duplicate elements from sorted linked list */
+	public void removeDuplicate(){
+		
+		Node current = head;
+		while(current!=null){
+			Node temp = current;
+			while(temp != null && current.data == temp.data){
+				temp = temp.next;
+			}
+			current.next = temp;
+			current = current.next;
+		}
+	}
 }
 
 class Node{
