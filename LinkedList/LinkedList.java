@@ -6,6 +6,10 @@ public class LinkedList{
 		return head;
 	}
 	
+	public Node getTail(){
+		return tail;
+	}
+	
 	public void addFirst(String data){
 		Node node = new Node(data);
 		if(head == null){
