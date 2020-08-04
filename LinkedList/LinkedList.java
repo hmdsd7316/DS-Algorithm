@@ -1,5 +1,5 @@
 public class LinkedList{
-	private Node head;
+	public Node head;
 	private Node tail;
 	
 	public Node getHead(){
