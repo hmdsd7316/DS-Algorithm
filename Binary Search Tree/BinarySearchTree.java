@@ -1,7 +1,7 @@
+import static java.lang.System.out;
 class Node{
 	int data;
-	Node left;
-	Node right;
+	Node left, right;
 
 	public Node(int data){
 		this.data = data;
@@ -11,17 +11,17 @@ class Node{
 public class BinarySearchTree{
 	Node rootNode;
 	
-	public void display(){
-		display(rootNode);
+	public void traverse(){
+		traverse(rootNode);
 	}
 	
-	private void display(Node node){
+	private void traverse(Node node){
 		if(node == null)
 			return;
 		
-		display(node.left);
+			traverse(node.left);
 		System.out.println(node.data);
-		display(node.right);
+		traverse(node.right);
 	}
 
 	public void insert(int data){
@@ -48,6 +48,24 @@ public class BinarySearchTree{
 			}
 		}
 	}
+
+	public boolean contains(int value){
+		return contains(rootNode, value);
+	}
+
+	private boolean contains(Node node, int value){
+		if(node.data == value){
+			return true;
+		}
+
+		if(node.left !=null && value < node.data){
+			return contains(node.left, value);
+		}else if(node.right !=null){
+			return contains(node.right, value);
+		}
+
+		return false;
+	}
 	
 	public static void main(String...a){
 		BinarySearchTree bst = new BinarySearchTree();
@@ -57,6 +75,7 @@ public class BinarySearchTree{
 		bst.insert(30);
 		bst.insert(12);
 		
-		bst.display();
+		bst.traverse();
+		out.println("is 15 Exists: " + bst.contains(15));
 	}
 }
