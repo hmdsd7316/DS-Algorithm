@@ -101,14 +101,31 @@ public class BST{
         }
         return minv;
       }
+	 
+	static BST prev;
+	private static boolean isBST(BST node){
+		if(node == null){
+			return true;
+		}
+		
+		if(!isBST(node.left))
+			return false;
+		
+		if(prev !=null && prev.value > node.value)
+			return false;
+		
+		prev = node;
+		
+		return isBST(node.right);
+	}
 
     public static void main(String...a) {
         BST bst = new BST(50);
-		bst.insert(10);
-		bst.insert(40);
-		bst.insert(15);
-		bst.insert(30);
-		bst.insert(12);
+		//bst.insert(10);
+		//bst.insert(40);
+		//bst.insert(15);
+		//bst.insert(30);
+		//bst.insert(12);
 		
 		bst.traverse();
         out.println("is 15 Exists: " + bst.contains(15));
@@ -118,5 +135,7 @@ public class BST{
         bst.delete(15);
         out.println(" After delete ================");
         bst.traverse();
+		
+		out.println("isBST: " + isBST(bst));
     }
 }
